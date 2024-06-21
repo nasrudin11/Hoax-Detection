@@ -45,7 +45,7 @@ def main():
         vectorizer = pickle.load(f)
 
     # Get user input
-    text_input = st.text_input("Enter some text:")
+    text_input = st.text_input("Enter some news text:")
     if text_input:
         # Preprocess the text
         preprocessed_text = preprocess_text(text_input)
@@ -60,9 +60,9 @@ def main():
 
         # Display prediction
         if prediction[0] == 1:
-            st.write("Predicted label: Positive")
+            st.write("Predicted News: Real News")
         else:
-            st.write("Predicted label: Negative")
+            st.write("Predicted News: Fake News")
 
 # Run the app
 if __name__ == '__main__':
