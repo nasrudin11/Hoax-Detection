@@ -48,10 +48,10 @@ def main():
             svm_model_linear = pickle.load(f)
 
         # Initialize TfidfVectorizer
-        vect = TfidfVectorizer()
+        vectorizer = TfidfVectorizer()
 
         # Vectorize the preprocessed text
-        X_text = vect.transform([preprocessed_text])
+        X_text = vectorizer.transform([preprocessed_text])
 
         # Make prediction
         prediction = svm_model_linear.predict(X_text)
