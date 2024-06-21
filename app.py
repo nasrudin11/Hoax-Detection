@@ -7,6 +7,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import SVC
 
 # Download NLTK resources (run once)
 nltk.download('punkt')
@@ -35,6 +36,14 @@ def main():
     st.title("Text Preprocessing and Prediction App")
     st.write("This app preprocesses text and makes predictions using a pre-trained SVM model.")
 
+    # Load the pre-trained SVM model
+    with open('svm_model_linear.pkl', 'rb') as f:
+        svm_model_linear = pickle.load(f)
+
+    # Load the pre-trained TfidfVectorizer
+    with open('tfidf_vectorizer.pkl', 'rb') as f:
+        vectorizer = pickle.load(f)
+
     # Get user input
     text_input = st.text_input("Enter some text:")
     if text_input:
@@ -42,13 +51,6 @@ def main():
         preprocessed_text = preprocess_text(text_input)
         st.write("Preprocessed Text:")
         st.write(preprocessed_text)
-
-        # Load the pre-trained SVM model
-        with open('svm_model_linear.pkl', 'rb') as f:
-            svm_model_linear = pickle.load(f)
-
-        # Initialize TfidfVectorizer
-        vectorizer = TfidfVectorizer()
 
         # Vectorize the preprocessed text
         X_text = vectorizer.transform([preprocessed_text])
