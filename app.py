@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 import pickle
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Download NLTK resources (run once)
 nltk.download('punkt')
@@ -46,8 +47,11 @@ def main():
         with open('svm_model_linear.pkl', 'rb') as f:
             svm_model_linear = pickle.load(f)
 
+        # Initialize TfidfVectorizer
+        vect = TfidfVectorizer()
+
         # Vectorize the preprocessed text
-        X_text = vectorizer.transform([preprocessed_text])
+        X_text = vect.transform([preprocessed_text])
 
         # Make prediction
         prediction = svm_model_linear.predict(X_text)
