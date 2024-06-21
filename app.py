@@ -43,7 +43,7 @@ def main():
         st.write(preprocessed_text)
 
         # Load the pre-trained SVM model
-        with open('svm_model_linear.pickle', 'rb') as f:
+        with open('svm_model_linear.pkl', 'rb') as f:
             svm_model_linear = pickle.load(f)
 
         # Vectorize the preprocessed text
