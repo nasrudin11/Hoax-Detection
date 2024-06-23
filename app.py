@@ -49,8 +49,6 @@ def main():
     if text_input:
         # Preprocess the text
         preprocessed_text = preprocess_text(text_input)
-        st.write("Preprocessed Text:")
-        st.write(preprocessed_text)
 
         # Vectorize the preprocessed text
         X_text = vectorizer.transform([preprocessed_text])
